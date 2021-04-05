@@ -1,0 +1,15 @@
+import string;
+
+func fib(u32 x) {
+    if (x < 3) {
+        x = 1;
+    } else {
+        fib(x - 1) + fib(x - 2);
+    }
+
+    return x;
+}
+
+func main() {
+    fib(40);
+}

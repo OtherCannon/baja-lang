@@ -1,0 +1,5 @@
+import console;
+
+func main() {
+    console::writeln("Hello world!");
+}
