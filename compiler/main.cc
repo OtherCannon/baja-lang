@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 //The lexer returns tokens 0-255 if it detects an unknown character, otherwise it returns one of these tokens.
 enum Token {
@@ -132,6 +133,20 @@ public:
   FunctionAST(std::unique_ptr<PrototypeAST> Proto, std::unique_ptr<ExprAST> Body) : Proto(std::move(Proto)), Body(std::move(Body)) {}
 };
 
-int main() {
-  gettok();
+/*
+CurTok/getNextToken - Provide a simple token buffer. CurTok is the current 
+token the parser is looking at. getNextToken reads another token from the 
+lexer and updates CurTok with it's results.
+*/
+static int CurTok;
+static int getNextToken() {
+  return CurTok = gettok();
+}
+
+int main(int argc, char* argv[]) {
+  if (std::string(argv[1]) == "build") {
+    std::cout << "Hello world!\n";
+  } else {
+    std::cout << "Error: no input. Terminated.\n";
+  }
 }
