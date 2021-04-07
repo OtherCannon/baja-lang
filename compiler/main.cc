@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <memory>
 
 //The lexer returns tokens 0-255 if it detects an unknown character, otherwise it returns one of these tokens.
 enum Token {
