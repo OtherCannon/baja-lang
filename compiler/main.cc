@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <map>
 #include <memory>
+#include <utility>
 
 //The lexer returns tokens 0-255 if it detects an unknown character, otherwise it returns one of these tokens.
 enum Token {
@@ -151,6 +152,9 @@ static int getNextToken() {
 int main(int argc, char* argv[]) {
   if (std::string(argv[1]) == "build") {
     std::cout << "Hello world!\n";
+  } else if (std::string(argv[1]) == "-help") {
+    std::cout << "Usage: \n";
+    std::cout << "build - Builds an inputted .oc file.\n";
   } else {
     std::cout << "Error: no input. Terminated.\n";
   }
