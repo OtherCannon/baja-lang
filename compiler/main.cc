@@ -149,13 +149,21 @@ static int getNextToken() {
   return CurTok = gettok();
 }
 
+/// LogError* - These are little helper functions for error handling.
+
+
+
 int main(int argc, char* argv[]) {
-  if (std::string(argv[1]) == "build") {
+  std::cout << argc << std::endl;
+  
+  //Takes the command line arguments and returns an input result.
+  if (std::string(argv[1]) == "build" && argc == 1) {
     std::cout << "Hello world!\n";
-  } else if (std::string(argv[1]) == "-help") {
+  } else if ((std::string(argv[1]) == "-help" || std::string(argv[1]) == "-h") && argc == 1) {
     std::cout << "Usage: \n";
-    std::cout << "build - Builds an inputted .oc file.\n";
-  } else {
-    std::cout << "Error: no input. Terminated.\n";
+    std::cout << "build - Builds an input .oc file\n";
+  } else if (argc == 1 && std::string(argv[1]) == "\n") {
+    std::cout << "Error: no arguments. Terminated.\n";
+    std::cout << "Need help? Try -help or -h.\n";
   }
 }
