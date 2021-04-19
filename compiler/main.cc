@@ -30,12 +30,12 @@ int gettok() {
   //Skip any whitespace.
   while (isspace(LastChar))
     LastChar = getchar();
-  
+
   if (isalpha(LastChar)) { //identifier: [a-zA-Z][a-zA-Z0-9]*
     IdentifierStr = LastChar;
     while (isalnum((LastChar = getchar())))
       IdentifierStr += LastChar;
-    
+
     if (IdentifierStr == "def")
       return tok_def;
     if (IdentifierStr == "extern")
@@ -67,7 +67,7 @@ int gettok() {
   //Check for end of file. Don't eat the EOF.
   if (LastChar == EOF)
     return tok_eof;
-  
+
   //Otherwise, just return the character as its ascii value.
   int ThisChar = LastChar;
   LastChar = getchar();
@@ -101,7 +101,7 @@ public:
 class BinaryExprAST : public ExprAST {
   char Op;
   std::unique_ptr<ExprAST> LHS, RHS;
-  
+
 public:
   BinaryExprAST(char op, std::unique_ptr<ExprAST> LHS, std::unique_ptr<ExprAST> RHS) : Op(op), LHS(std::move(LHS)), RHS(std::move(RHS)) {}
 };
@@ -115,9 +115,9 @@ public:
   CallExprAST(const std::string &Callee, std::vector<std::unique_ptr<ExprAST>> Args) : Callee(Callee), Args(std::move(Args)) {}
 };
 
-/* 
+/* PrototypeAST - Expression class for function prototypes.
 PrototypeAST - This class represents the "prototype" for a function,
-which captures its name, and its argument names (thus implicitly the number 
+which captures its name, and its argument names (thus implicitly the number
 of arguments the function takes).
 */
 class PrototypeAST {
@@ -140,8 +140,8 @@ public:
 };
 
 /*
-CurTok/getNextToken - Provide a simple token buffer. CurTok is the current 
-token the parser is looking at. getNextToken reads another token from the 
+CurTok/getNextToken - Provide a simple token buffer. CurTok is the current
+token the parser is looking at. getNextToken reads another token from the
 lexer and updates CurTok with it's results.
 */
 static int CurTok;
@@ -150,13 +150,76 @@ static int getNextToken() {
 }
 
 /// LogError* - These are little helper functions for error handling.
+std::unique_ptr<ExprAST> LogError(const char* Str) {
+  fprintf(stderr, "LogError: %s\n", Str);
+  return nullptr;
+}
+std::unique_ptr<PrototypeAST> LogErrorP(const char* Str) {
+  LogError(Str);
+  return nullptr;
+}
 
+/// Basic Expression Parsing
+/// numberexpr ::= number
+static std::unique_ptr<ExprAST> ParseNumberExpr() {
+  auto Result = std::make_unique<NumberExprAST>(NumVal);
+  getNextToken(); // consume the number
+  return std::move(Result);
+}
 
+/// parenexpr ::= '(' expression ')'
+static std::unique_ptr<ExprAST> ParseParenExpr() {
+  getNextToken(); // eat (.
+  auto V = ParseExpression();
+  if (!V)
+    return nullptr;
+  
+  if (CurTok != ')')
+    return LogError("expected ')'");
+  getNextToken(); // eat ).
+  return V;
+}
+
+/// identifierexpr
+/// ::= identifier
+/// ::= identifier '(' expression* ')'
+static std::unique_ptr<ExprAST> ParseIdentifierExpr() {
+  std::string IdName = IdentifierStr;
+
+  getNextToken(); // eat identifier
+
+  if (CurTok != '(') // Simple variable ref.
+    return std::make_unique<VariableExprAST>(IdName);
+  
+  // Call.
+  getNextToken(); // eat (
+  std::vector<std::unique_ptr<ExprAST>> Args;
+  if (CurTok != ')') {
+    while (1) {
+      if (auto Arg = ParseExpression())
+        Args.push_back(std::move(Arg));
+      else
+        return nullptr;
+      
+      if (CurTok == ')')
+        break;
+      
+      if (CurTok != ',')
+        return LogError("Expected ')' or ',' in argument list");
+      getNextToken();
+    }
+  }
+
+  // Eat the ')'.
+  getNextToken();
+
+  return std::make_unique<CallExprAST>(IdName, std::move(Args));
+}
 
 int main(int argc, char* argv[]) {
   if (argc == 1 && argv[1] == "build") {
     std::cout << "Hello world!\n";
-  } else if (argc == 1 && (argv[1] == "-help" || argv[1] == "-h")) {
+  } else if (argc == 1 && argv[1] == "-help") {
     std::cout << "Usage: \n";
     std::cout << "build - Builds an input file.\n";
   } else {
