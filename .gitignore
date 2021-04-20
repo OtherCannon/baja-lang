@@ -34,3 +34,6 @@
 .vscode
 .replit
 /compiler/roc
+/compiler/roc.exe
+/compiler/roc.ilk
+/compiler/roc.pdb
