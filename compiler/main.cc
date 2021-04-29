@@ -614,8 +614,14 @@ int main(int argc, char* argv[]) {
   fprintf(stderr, "ready> ");
   getNextToken();
 
+	// Make the module, which holds all the code.
+	InitializeModule();
+
   // Run the main "interpreter loop" now.
   MainLoop();
+
+	// Print out all of the generated code.
+	TheModule->print(errs(), nullptr);
 
   return 0;
 }
