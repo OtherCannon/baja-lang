@@ -33,7 +33,7 @@
 
 .vscode
 .replit
-/compiler/roc
-/compiler/*.exe
-/compiler/*.ilk
-/compiler/*.pdb
+compiler/roc
+compiler/*.exe
+compiler/*.ilk
+compiler/*.pdb
