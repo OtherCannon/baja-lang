@@ -600,7 +600,6 @@ static void MainLoop() {
 // Main driver code.
 //===----------------------------------------------------------------------===//
 
-
 int main(int argc, char* argv[]) {
 	// Install standard binary operators.
 	// 1 is lowest precedence.
