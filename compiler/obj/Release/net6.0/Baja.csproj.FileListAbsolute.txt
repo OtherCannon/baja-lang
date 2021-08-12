@@ -1,0 +1,17 @@
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\baja.exe
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\baja.deps.json
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\baja.runtimeconfig.json
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\baja.dll
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\ref\baja.dll
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\baja.pdb
+C:\Users\Other\source\repos\Baja\bin\Release\net6.0\LLVMSharp.dll
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.csproj.AssemblyReference.cache
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.AssemblyInfoInputs.cache
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.AssemblyInfo.cs
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.csproj.CoreCompileInputs.cache
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.csproj.CopyComplete
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\baja.dll
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\ref\baja.dll
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\baja.pdb
+C:\Users\Other\source\repos\Baja\obj\Release\net6.0\Baja.genruntimeconfig.cache
