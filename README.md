@@ -1,23 +1,17 @@
-# Oc-Lang
-![Oc-Lang Logo](/resources/oc-logo.png)
+# Baja-Lang
+(Put logo here)
 
-Oc is a simple data-oriented language designed for fast runtimes and fast programming, without drawbacks such as a garbage collector or complex syntax.
+Baja is a data-oriented language that is currently under construction. The current repository is outdated.
 
 ## Building
 ### Requirements:
-- LLVM (Compiled yourself, not the prebuilt binaries)
-- MinGW & MSYS2 (If on Windows)
+- Mono or DotNet SDK 6.0
 
 ### Building Steps:
-1. Clone the repository:
-`git clone https://www.github.com/OtherCannon/oc-lang.git oc-lang`
-2. Enter the repository folder:
-`cd oc-lang`
-`cd compiler`
+Under Construction
+
 3. Build for your platform:
 #### Windows:
-`make win64` - 64-bit
-`make win32` - 32-bit
+Under Construction
 #### Linux:
-`make linux64` - 64-bit
-`make linux32` - 32-bit
+Under Construction
